@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package eslite.jwt_revoker.jwt_revoke.v1;
+
+import "buf/validate/validate.proto";
+
+// 確認 token 是否已撤銷 Request
+message CheckRevokedRequest {
+  // JWT token string
+  string token = 1 [(buf.validate.field).string.min_len = 1] ;
+}
+
+// 確認 token 是否已撤銷 Response
+message CheckRevokedResponse {
+  bool revoked = 1;
+  string jti = 2; // 回傳解析出的 JTI (for debugging)
+}
+
+// 撤銷 Token Request
+message RevokeTokenRequest {
+  // JWT token string
+  string token = 1 [(buf.validate.field).string.min_len = 1] ;
+}
+
+// 撤銷 Token Response
+message RevokeTokenResponse {
+  bool ok = 1;
+}
+
+service JWTRevokerService {
+  rpc CheckRevoked(CheckRevokedRequest) returns (CheckRevokedResponse);
+  rpc RevokeToken(RevokeTokenRequest) returns (RevokeTokenResponse);
+}
