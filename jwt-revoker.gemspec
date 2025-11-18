@@ -3,7 +3,7 @@
 require_relative "lib/jwt_revoker/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "jwt_revoker"
+  spec.name = "jwt-revoker"
   spec.version = JwtRevoker::VERSION
   spec.authors = ["LunaHuang"]
   spec.email = ["lunahuang@eslite.com"]
