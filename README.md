@@ -1,31 +1,41 @@
 # JwtRevoker
 
-TODO: Delete this and the text below, and describe your gem
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/jwt_revoker`. To experiment with that code, run `bin/console` for an interactive prompt.
+JwtRevoker 是一個提供檢查 JWT Token 是否已撤銷功能的 Ruby 客戶端
 
 ## Installation
 
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
-
-Install the gem and add to the application's Gemfile by executing:
-
-    $ bundle add UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG
-
-If bundler is not being used to manage dependencies, install the gem by executing:
-
-    $ gem install UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG
+在你的應用程式的 Gemfile 加上：
+```
+gem "jwt_revoker", git: "https://github.com/eslitecorp/jwt-revoker-ruby-sdk"
+```
+然後執行：
+```
+bundle install
+```
+或是直接安裝：
+```
+gem install jwt_revoker
+```
 
 ## Usage
 
-TODO: Write usage instructions here
+Step1:
+設定環境變數 `JWT_REVOKER_GRPC_SERVICE`
 
-## Development
+建立 JWTRevoker 客戶端
+```
+client = JwtRevoker::Client.new
+```
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake none` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+檢查 token 是否已撤銷
+```
+token = "your token"
+client.revoked?(token)
+```
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+錯誤處理說明：
+當驗證服務無法連線或發生異常時，需要自動略過 token 檢查，並預設 token 為有效，以避免影響整體服務可用性。
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/jwt_revoker.
+Bug reports and pull requests are welcome on GitHub at https://github.com/eslitecorp/jwt-revoker-ruby-sdk.
