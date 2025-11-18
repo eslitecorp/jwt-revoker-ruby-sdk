@@ -5,7 +5,7 @@ module JwtRevoker
     attr_accessor :endpoint, :timeout
 
     def initialize
-      @endpoint = "" 
+      @endpoint = ENV.fetch("JWT_REVOKER_GRPC_SERVICE")
       @timeout  = 1
     end
   end

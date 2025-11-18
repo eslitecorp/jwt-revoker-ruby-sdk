@@ -28,9 +28,3 @@ module JwtRevoker
     "[#{datetime.utc}] #{severity}: #{msg}\n"
   end
 end
-
- # 設定 gRPC 伺服器端點與逾時時間
-JwtRevoker.configure do |c|
-  c.endpoint = "localhost:50053"
-  c.timeout  = 1 # seconds
-end
