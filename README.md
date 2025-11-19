@@ -6,20 +6,15 @@ JwtRevoker 是一個提供檢查 JWT Token 是否已撤銷功能的 Ruby 客戶�
 
 在你的應用程式的 Gemfile 加上：
 ```
-gem "jwt_revoker", git: "https://github.com/eslitecorp/jwt-revoker-ruby-sdk"
+gem "jwt-revoker", git: "https://github.com/eslitecorp/jwt-revoker-ruby-sdk"
 ```
 然後執行：
 ```
 bundle install
 ```
-或是直接安裝：
-```
-gem install jwt_revoker
-```
 
 ## Usage
 
-Step1:
 設定環境變數 `JWT_REVOKER_GRPC_SERVICE`
 
 建立 JWTRevoker 客戶端
