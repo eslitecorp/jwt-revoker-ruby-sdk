@@ -7,6 +7,8 @@ module JwtRevoker
   class Client
     def initialize(config = JwtRevoker.config)
       @config = config
+      raise JwtRevoker::Error, "endpoint is not configured. Please use JwtRevoker.configure { |c| c.endpoint = 'your-endpoint' }" if @config.endpoint.nil? || @config.endpoint.empty?
+
       # Using insecure channel for simplicity; 不使用 TLS/SSL 加密通訊
       @stub = Eslite::JwtRevoker::JwtRevoke::V1::JWTRevokerService::Stub.new(@config.endpoint, :this_channel_is_insecure, timeout: @config.timeout)
     end

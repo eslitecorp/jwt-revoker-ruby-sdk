@@ -15,10 +15,16 @@ bundle install
 
 ## Usage
 
-設定環境變數 `JWT_REVOKER_GRPC_SERVICE`
+在應用程式初始化時設定（例如 Rails 的 `config/initializers/jwt_revoker.rb`）：
+```ruby
+JwtRevoker.configure do |config|
+  config.endpoint = ENV.fetch("JWT_REVOKER_GRPC_SERVICE")
+  # config.timeout = 1  # 選填，預設為 1 秒
+end
+```
 
 建立 JWTRevoker 客戶端
-```
+```ruby
 client = JwtRevoker::Client.new
 ```
 
